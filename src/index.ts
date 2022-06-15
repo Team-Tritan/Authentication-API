@@ -3,6 +3,7 @@
 import express from "express";
 import * as config from "./config";
 import Router from "./routes/router";
+import { initMongoose } from "./libs/mongoose/init";
 
 const app: express.Application = express();
 
@@ -13,6 +14,8 @@ app.use("/", Router);
 
 app.listen(config.server.port, () => {
   console.log(
-    `[AUTH SERVER] Listening on http://0.0.0.0:${config.server.port}/`
+    `[AUTH SERVER] EVENT --> Listening on http://0.0.0.0:${config.server.port}/`
   );
 });
+
+initMongoose();
