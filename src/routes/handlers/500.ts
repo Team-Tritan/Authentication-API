@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { config } from "../../config";
+import * as config from "../../config";
 
 const route = Router();
 
@@ -12,8 +12,8 @@ route.use("*", (_req: Request, _res: Response, _error: any) => {
     error: true,
     status: _res.status || 500,
     stacktrace: _error,
-    version: config.version,
-    mode: config.production ? "production" : "development",
+    version: config.server.version,
+    mode: config.server.production ? "production" : "development",
     request: {
       method: _req.method,
       body: _req.body,

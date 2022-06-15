@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { config } from "../../config";
+import * as config from "../../config";
 
 const route = Router();
 
@@ -9,8 +9,8 @@ route
   .get("/", (_req: Request, _res: Response) => {
     return _res.status(200).json({
       message: "Tritan Development: Internal Authentication API",
-      version: config.version,
-      mode: config.production ? "production" : "development",
+      version: config.server.version,
+      mode: config.server.production ? "production" : "development",
       error: false,
       status: 200,
       request: {

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { config } from "../../config";
+import * as config from "../../config";
 
 const route = Router();
 
@@ -9,8 +9,8 @@ route.use("*", (_req: Request, _res: Response) => {
     message: "The requested content could not be found on this server.",
     error: true,
     status: _res.status || 500,
-    version: config.version,
-    mode: config.production ? "production" : "development",
+    version: config.server.version,
+    mode: config.server.production ? "production" : "development",
     request: {
       method: _req.method,
       body: _req.body,
