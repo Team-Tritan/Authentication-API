@@ -33,7 +33,7 @@ route
     return _res.status(405).json({
       message: "Method not allowed",
       error: true,
-      status: _res.status || 405,
+      status: 405,
       request: {
         method: _req.method,
         body: _req.body,
