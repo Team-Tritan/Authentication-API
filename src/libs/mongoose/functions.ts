@@ -1,6 +1,7 @@
 "use strict";
 
 import User from "./User";
+import bcrypt from "bcrypt";
 
 export async function getUserByUsername(username) {
   let data = await User.findOne({ username: username });
@@ -22,15 +23,8 @@ export async function getUserByUsernameOrEmail(usernameOrEmail) {
 }
 
 // Create a new user
-export async function createUser(
-  username,
-  email,
-  password,
-  firstName,
-  lastName
-) {
+export async function createUser(email, password, firstName, lastName) {
   await new User({
-    username: username,
     email: email,
     password: password,
     firstName: firstName,
@@ -44,4 +38,11 @@ export async function createUser(
 
   let data = await User.findOne({ email: email });
   return data;
+}
+
+// Encrypt password for store
+export async function encryptPassword(password) {
+  let salt = await bcrypt.genSalt(10);
+  let hash = await bcrypt.hash(password, salt);
+  return hash;
 }
