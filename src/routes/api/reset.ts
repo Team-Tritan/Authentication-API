@@ -7,6 +7,14 @@ import * as functions from "../../utils/functions";
 
 const route = Router();
 
+interface User {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  metadata: {};
+}
+
 route
   .post("/", async (_req: Request, _res: Response) => {
     // Check auth header

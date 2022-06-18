@@ -6,9 +6,17 @@ import * as functions from "../../utils/functions";
 
 let route = Router();
 
+interface User {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  metadata: {};
+}
+
 route
   .post("/", async (_req: Request, _res: Response) => {
-    let { email, password, firstName, lastName } = _req.body;
+    let { email, password, firstName, lastName, metadata } = _req.body;
 
     const emailExists = await User.find({ email: email });
 
@@ -32,7 +40,8 @@ route
       email,
       passwordHash,
       firstName,
-      lastName
+      lastName,
+      metadata
     );
 
     console.log("[AUTH SERVER] REGISTER SUCCESS --> ", data);

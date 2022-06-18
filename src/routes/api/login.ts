@@ -7,6 +7,14 @@ import User from "../../libs/db/User";
 
 let route = Router();
 
+interface User {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  metadata: {};
+}
+
 route
   .post("/", async (_req: Request, _res: Response) => {
     let { email, password } = _req.body;

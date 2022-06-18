@@ -11,18 +11,6 @@ route.use("*", (_req: Request, _res: Response) => {
     status: _res.status || 500,
     version: config.server.version,
     mode: config.server.production ? "production" : "development",
-    request: {
-      method: _req.method,
-      body: _req.body,
-      url: _req.originalUrl,
-      params: _req.params,
-      query: _req.query,
-      headers: _req.headers,
-      cookies: _req.cookies,
-      fresh: _req.fresh,
-      xhr: _req.xhr,
-      protocol: _req.protocol,
-    },
   };
 
   return _res.json(data);
