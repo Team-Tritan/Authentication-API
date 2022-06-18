@@ -1,17 +1,14 @@
 import { Router, Request, Response } from "express";
-import * as config from "../../config";
+import * as config from "../config";
 
 const route = Router();
 
-// 500 Handling
-route.use("*", (_req: Request, _res: Response, _error: any) => {
-  console.error(_error);
-
+// 404 Handling
+route.use("*", (_req: Request, _res: Response) => {
   let data = {
-    message: "Internal Server Error",
+    message: "The requested content could not be found on this server.",
     error: true,
     status: _res.status || 500,
-    stacktrace: _error,
     version: config.server.version,
     mode: config.server.production ? "production" : "development",
     request: {
@@ -28,7 +25,7 @@ route.use("*", (_req: Request, _res: Response, _error: any) => {
     },
   };
 
-  return _res.status(500).json(data);
+  return _res.json(data);
 });
 
 export default route;

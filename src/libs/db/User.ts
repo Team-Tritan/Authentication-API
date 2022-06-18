@@ -43,7 +43,7 @@ const User = new mongoose.Schema({
     minlength: 2,
     maxlength: 64,
   },
+  metadata: {},
 });
 
 export default mongoose.model("Users", User, "Users");
-
