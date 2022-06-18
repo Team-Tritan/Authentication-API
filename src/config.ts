@@ -1,7 +1,7 @@
 "use strict";
 
 export const server = {
-  port: 8000,
+  port: 80,
   version: "0.0.1-alpha",
   production: false,
 };
