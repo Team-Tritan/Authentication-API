@@ -29,6 +29,7 @@ export async function createUser(email, password, firstName, lastName) {
     password: password,
     firstName: firstName,
     lastName: lastName,
+    metadata: {},
   })
     .save()
     .catch((err) => {
