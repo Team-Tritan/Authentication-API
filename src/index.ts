@@ -3,7 +3,7 @@
 import express from "express";
 import * as config from "./config";
 import Router from "./routes/router";
-import { initMongoose } from "./libs/mongoose/init";
+import { initMongoose } from "./libs/db/init";
 
 const app: express.Application = express();
 

@@ -1,13 +1,33 @@
 "use strict";
 
 import { Router, Request, Response } from "express";
-import User from "../../libs/mongoose/User";
-import * as functions from "../../libs/mongoose/functions";
+import User from "../../libs/db/User";
+import * as config from "../../config";
+import * as functions from "../../utils/functions";
 
 const route = Router();
 
 route
   .post("/", async (_req: Request, _res: Response) => {
+    // Check auth header
+    const auth = _req.headers.authorization;
+
+    if (!auth) {
+      return _res.status(401).json({
+        error: true,
+        code: 401,
+        message: "No authorization token provided.",
+      });
+    }
+
+    if (auth !== config.tokens.frontend_key) {
+      return _res.status(401).json({
+        error: true,
+        code: 401,
+        message: "Invalid authorization token provided.",
+      });
+    }
+
     let { email, password } = _req.body;
 
     if (!email || !password) {

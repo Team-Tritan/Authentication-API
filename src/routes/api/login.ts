@@ -3,7 +3,7 @@
 import { Router, Request, Response } from "express";
 import bcrypt from "bcrypt";
 
-import User from "../../libs/mongoose/User";
+import User from "../../libs/db/User";
 
 let route = Router();
 

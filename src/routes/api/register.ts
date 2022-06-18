@@ -1,8 +1,8 @@
 "use strict";
 
 import { Router, Request, Response } from "express";
-import User from "../../libs/mongoose/User";
-import * as functions from "../../libs/mongoose/functions";
+import User from "../../libs/db/User";
+import * as functions from "../../utils/functions";
 
 let route = Router();
 
