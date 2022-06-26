@@ -6,7 +6,7 @@
 - "dev": "cd src && nodemon index.ts",
 - "build": "tsc --build",
 
-Routes
+## Routes:
 
 - / - Landing
 - /api/login - Login, accepted post params are: email, password
