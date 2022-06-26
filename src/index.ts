@@ -1,11 +1,27 @@
-import DatabaseConnection from "./libs/db/Init";
-import Server from "./libs/express/Server";
+"use strict";
 
-class AuthServer {
-  constructor() {
-    new DatabaseConnection();
-    new Server();
-  }
-}
+import express from "express";
+import * as config from "./config";
+import Router from "./routes/router";
+import DatabaseConnection from "./libs/db/init";
 
-export default new AuthServer();
+const app: express.Application = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", Router);
+
+console.log(
+  `[AUTH SERVER] ~~~~~~~~> Starting ${
+    config.server.production ? "PRODUCTION" : "DEVELOPMENT"
+  } SERVER <~~~~~~~~`
+);
+
+app.listen(config.server.port, () => {
+  console.log(
+    `[AUTH SERVER] EVENT --> Listening on http://0.0.0.0:${config.server.port}/`
+  );
+});
+
+DatabaseConnection();
